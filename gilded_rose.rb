@@ -8,12 +8,8 @@ class ItemProxy
 
   def update
     update_quality_before_expiration
-    
     age!
-    
-    if expired?
-      update_quality_after_expiration
-    end
+    update_quality_after_expiration
   end
 
   private
@@ -67,6 +63,8 @@ class ItemProxy
   end
   
   def update_quality_after_expiration
+    return unless expired?
+
     if item.name != "Aged Brie"
       if item.name != 'Backstage passes to a TAFKAL80ETC concert'
         if item.quality > 0
