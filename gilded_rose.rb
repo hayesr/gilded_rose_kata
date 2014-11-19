@@ -45,11 +45,15 @@ class ItemUpdater
     when 'Sulfuras, Hand of Ragnaros'
       update_sulfuras_before_expiration
     else
-      if item.quality > 0
-        decrease_quality
-      end
+      update_item_before_expiration
     end
 
+  end
+  
+  def update_item_before_expiration
+    if item.quality > 0
+      decrease_quality
+    end
   end
   
   def update_sulfuras_before_expiration
