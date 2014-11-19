@@ -11,6 +11,10 @@ class ItemProxy
       item.sell_in -= 1
     end
   end
+  
+  def expired?
+    item.sell_in < 0
+  end
 
   def update
     if item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert'
@@ -39,7 +43,7 @@ class ItemProxy
     
     age!
     
-    if item.sell_in < 0
+    if expired?
       if item.name != "Aged Brie"
         if item.name != 'Backstage passes to a TAFKAL80ETC concert'
           if item.quality > 0
