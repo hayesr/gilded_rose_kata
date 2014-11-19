@@ -37,14 +37,11 @@ class ItemUpdater
   end
   
   def update_quality_before_expiration
-    if item.name == 'Aged Brie'
+    case item.name
+    when 'Aged Brie'
       update_aged_brie_before_expiration
-      return
-    end
-
-    if item.name == 'Backstage passes to a TAFKAL80ETC concert'
+    when 'Backstage passes to a TAFKAL80ETC concert'
       update_backstage_pass_before_expiration
-
     else
       if item.quality > 0
         if item.name != 'Sulfuras, Hand of Ragnaros'
@@ -52,6 +49,7 @@ class ItemUpdater
         end
       end
     end
+
   end
   
   def update_aged_brie_before_expiration
