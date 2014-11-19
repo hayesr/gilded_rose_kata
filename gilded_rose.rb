@@ -42,14 +42,15 @@ class ItemUpdater
       return
     end
 
-    if item.name != 'Backstage passes to a TAFKAL80ETC concert'
+    if item.name == 'Backstage passes to a TAFKAL80ETC concert'
+      update_backstage_pass_before_expiration
+
+    else
       if item.quality > 0
         if item.name != 'Sulfuras, Hand of Ragnaros'
           decrease_quality
         end
       end
-    else
-      update_backstage_pass_before_expiration
     end
   end
   
