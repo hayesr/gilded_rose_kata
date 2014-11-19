@@ -5,6 +5,12 @@ class ItemProxy
   def initialize(item)
     @item = item
   end
+  
+  def age!
+    if item.name != 'Sulfuras, Hand of Ragnaros'
+      item.sell_in -= 1
+    end
+  end
 
   def update
     if item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert'
@@ -30,9 +36,9 @@ class ItemProxy
         end
       end
     end
-    if item.name != 'Sulfuras, Hand of Ragnaros'
-      item.sell_in -= 1
-    end
+    
+    age!
+    
     if item.sell_in < 0
       if item.name != "Aged Brie"
         if item.name != 'Backstage passes to a TAFKAL80ETC concert'
@@ -42,7 +48,7 @@ class ItemProxy
             end
           end
         else
-          item.quality = item.quality - item.quality
+          item.quality = 0
         end
       else
         if item.quality < 50
