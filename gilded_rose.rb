@@ -49,27 +49,31 @@ class ItemUpdater
         end
       end
     else
-      if item.quality < 50
-        item.quality += 1
-        if item.name == 'Backstage passes to a TAFKAL80ETC concert'
-          if item.sell_in < 11
-            if item.quality < 50
-              item.quality += 1
-            end
-          end
-          if item.sell_in < 6
-            if item.quality < 50
-              item.quality += 1
-            end
-          end
-        end
-      end
+      update_backstage_pass_before_expiration
     end
   end
   
   def update_aged_brie_before_expiration
     if item.quality < 50
       item.quality += 1
+    end
+  end
+  
+  def update_backstage_pass_before_expiration
+    if item.quality < 50
+      item.quality += 1
+      if item.name == 'Backstage passes to a TAFKAL80ETC concert'
+        if item.sell_in < 11
+          if item.quality < 50
+            item.quality += 1
+          end
+        end
+        if item.sell_in < 6
+          if item.quality < 50
+            item.quality += 1
+          end
+        end
+      end
     end
   end
   
