@@ -1,5 +1,12 @@
-def update_quality(items)
-  items.each do |item|
+require 'delegate'
+
+class ItemProxy
+  attr_reader :item
+  def initialize(item)
+    @item = item
+  end
+
+  def update
     if item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert'
       if item.quality > 0
         if item.name != 'Sulfuras, Hand of Ragnaros'
@@ -43,6 +50,14 @@ def update_quality(items)
         end
       end
     end
+  end
+end
+
+
+
+def update_quality(items)
+  items.each do |item|
+    ItemProxy.new(item).update
   end
 end
 
