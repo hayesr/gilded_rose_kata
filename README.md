@@ -1,3 +1,10 @@
+
+### This is a fork
+… of the original by Jim Weirich, refactored by @geeksam and [Eric Hayes](https://github.com/hayesr) ([Twitter](https://twitter.com/ehayes)) at RubyConf 2014.
+
+[See the original](https://github.com/jimweirich/gilded_rose_kata)
+
+
 # The Gilded Rose Code Kata
 
 This is a Ruby version of the Gilded Rose Kata, found
