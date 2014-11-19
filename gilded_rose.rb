@@ -40,8 +40,16 @@ class ItemProxy
 
   private
   
+  def conjured?
+    item.name == 'Conjured Mana Cake'
+  end
+
   def decrease_quality
-    item.quality -= 1
+    if conjured?
+      item.quality -= 2
+    else
+      item.quality -= 1
+    end
   end
   
   def age!
