@@ -5,34 +5,6 @@ class ItemProxy
   def initialize(item)
     @item = item
   end
-  
-  def age!
-    if item.name != 'Sulfuras, Hand of Ragnaros'
-      item.sell_in -= 1
-    end
-  end
-  
-  def expired?
-    item.sell_in < 0
-  end
-  
-  def update_quality_after_expiration
-    if item.name != "Aged Brie"
-      if item.name != 'Backstage passes to a TAFKAL80ETC concert'
-        if item.quality > 0
-          if item.name != 'Sulfuras, Hand of Ragnaros'
-            item.quality -= 1
-          end
-        end
-      else
-        item.quality = 0
-      end
-    else
-      if item.quality < 50
-        item.quality += 1
-      end
-    end
-  end
 
   def update
     if item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert'
@@ -63,6 +35,36 @@ class ItemProxy
     
     if expired?
       update_quality_after_expiration
+    end
+  end
+
+  private
+  
+  def age!
+    if item.name != 'Sulfuras, Hand of Ragnaros'
+      item.sell_in -= 1
+    end
+  end
+  
+  def expired?
+    item.sell_in < 0
+  end
+  
+  def update_quality_after_expiration
+    if item.name != "Aged Brie"
+      if item.name != 'Backstage passes to a TAFKAL80ETC concert'
+        if item.quality > 0
+          if item.name != 'Sulfuras, Hand of Ragnaros'
+            item.quality -= 1
+          end
+        end
+      else
+        item.quality = 0
+      end
+    else
+      if item.quality < 50
+        item.quality += 1
+      end
     end
   end
 end
