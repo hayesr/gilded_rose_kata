@@ -42,14 +42,18 @@ class ItemUpdater
       update_aged_brie_before_expiration
     when 'Backstage passes to a TAFKAL80ETC concert'
       update_backstage_pass_before_expiration
+    when 'Sulfuras, Hand of Ragnaros'
+      update_sulfuras_before_expiration
     else
       if item.quality > 0
-        if item.name != 'Sulfuras, Hand of Ragnaros'
-          decrease_quality
-        end
+        decrease_quality
       end
     end
 
+  end
+  
+  def update_sulfuras_before_expiration
+    # this space intentionally left blank
   end
   
   def update_aged_brie_before_expiration
