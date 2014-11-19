@@ -10,7 +10,7 @@ class ItemProxy
     if item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert'
       if item.quality > 0
         if item.name != 'Sulfuras, Hand of Ragnaros'
-          item.quality -= 1
+          decrease_quality
         end
       end
     else
@@ -40,6 +40,10 @@ class ItemProxy
 
   private
   
+  def decrease_quality
+    item.quality -= 1
+  end
+  
   def age!
     if item.name != 'Sulfuras, Hand of Ragnaros'
       item.sell_in -= 1
@@ -55,7 +59,7 @@ class ItemProxy
       if item.name != 'Backstage passes to a TAFKAL80ETC concert'
         if item.quality > 0
           if item.name != 'Sulfuras, Hand of Ragnaros'
-            item.quality -= 1
+            decrease_quality
           end
         end
       else
