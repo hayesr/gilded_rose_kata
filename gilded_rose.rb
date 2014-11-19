@@ -5,6 +5,15 @@ class ItemUpdater
   def initialize(item)
     @item = item
   end
+  
+  def self.appropriate_subtype_for(item)
+    if item.name == 'Aged Brie'
+      subtype = BrieUpdater
+    else
+      subtype = self
+    end
+    subtype.new(item)
+  end
 
   def update
     update_quality_before_expiration
@@ -103,11 +112,15 @@ class ItemUpdater
   end
 end
 
+class BrieUpdater < ItemUpdater
+end
+
 
 
 def update_quality(items)
   items.each do |item|
-    ItemUpdater.new(item).update
+    updater = ItemUpdater.appropriate_subtype_for(item)
+    updater.update
   end
 end
 
