@@ -37,7 +37,12 @@ class ItemProxy
   end
   
   def update_quality_before_expiration
-    if item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert'
+    if item.name == 'Aged Brie'
+      update_aged_brie_before_expiration
+      return
+    end
+
+    if item.name != 'Backstage passes to a TAFKAL80ETC concert'
       if item.quality > 0
         if item.name != 'Sulfuras, Hand of Ragnaros'
           decrease_quality
@@ -59,6 +64,12 @@ class ItemProxy
           end
         end
       end
+    end
+  end
+  
+  def update_aged_brie_before_expiration
+    if item.quality < 50
+      item.quality += 1
     end
   end
   
