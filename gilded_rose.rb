@@ -15,6 +15,24 @@ class ItemProxy
   def expired?
     item.sell_in < 0
   end
+  
+  def update_quality_after_expiration
+    if item.name != "Aged Brie"
+      if item.name != 'Backstage passes to a TAFKAL80ETC concert'
+        if item.quality > 0
+          if item.name != 'Sulfuras, Hand of Ragnaros'
+            item.quality -= 1
+          end
+        end
+      else
+        item.quality = 0
+      end
+    else
+      if item.quality < 50
+        item.quality += 1
+      end
+    end
+  end
 
   def update
     if item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert'
@@ -44,21 +62,7 @@ class ItemProxy
     age!
     
     if expired?
-      if item.name != "Aged Brie"
-        if item.name != 'Backstage passes to a TAFKAL80ETC concert'
-          if item.quality > 0
-            if item.name != 'Sulfuras, Hand of Ragnaros'
-              item.quality -= 1
-            end
-          end
-        else
-          item.quality = 0
-        end
-      else
-        if item.quality < 50
-          item.quality += 1
-        end
-      end
+      update_quality_after_expiration
     end
   end
 end
