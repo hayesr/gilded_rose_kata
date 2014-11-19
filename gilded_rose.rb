@@ -1,6 +1,6 @@
 require 'delegate'
 
-class ItemProxy
+class ItemUpdater
   attr_reader :item
   def initialize(item)
     @item = item
@@ -98,7 +98,7 @@ end
 
 def update_quality(items)
   items.each do |item|
-    ItemProxy.new(item).update
+    ItemUpdater.new(item).update
   end
 end
 
