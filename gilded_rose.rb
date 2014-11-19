@@ -67,16 +67,18 @@ class ItemUpdater
   end
   
   def update_backstage_pass_before_expiration
-    item.quality += 1
-    if item.sell_in < 11
-      item.quality += 1
-    end
-    if item.sell_in < 6
-      item.quality += 1
-    end
+    item.quality += backstage_pass_coolness_factor
 
     if item.quality > 50
       item.quality = 50
+    end
+  end
+  
+  def backstage_pass_coolness_factor
+    case item.sell_in
+    when (1..5)  ; 3
+    when (6..10) ; 2
+    else         ; 1
     end
   end
   
